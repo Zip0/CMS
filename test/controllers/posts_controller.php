@@ -3,7 +3,6 @@
 class PostsController {
 
     public function listCategories() {
-//        die;//daloot dees
         $posts = Post::all();
         require_once('views/posts/list.php');
     }
@@ -15,20 +14,21 @@ class PostsController {
     }
 
     public function delete() {
-//        if(!isset($GET['id'])) {
-////            die;
-//        $this->listCategories();
-//        
-//            die;
-//        }
         $this->checkId();
         $db = Db::getInstance();
         $post = Post::find($_GET['id']);
-        $db->deleteCategory($post->id);//https://pics.me.me/when-the-aux-cable-accidentally-disconnects-from-your-phone-oh-25537231.png
+        $db->deleteCategory($post->id);
         $this->listCategories();
     }
 
     public function addCategory() {
+        if(!ctype_alnum($_POST['selectedCategoryName'])) {
+            echo "<div class='container'>
+                    <h3>Invalid name</h3>
+                </div>";
+        $this->listCategories();
+        return;
+        }
         $db = Db::getInstance();
         $db->addCategory();
         $this->listCategories();
@@ -43,8 +43,25 @@ class PostsController {
     public function updateCategory() {
         $this->checkId();
         $post = Post::find($_GET['id']);
-        $name = $_POST['selectedCategoryName'];
-        $active = $_POST['selectedCategoryActive'];
+        if (isset($_POST['selectedCategoryName'])) {
+            $name = $_POST['selectedCategoryName'];
+        } else {
+            $name = '';
+        }
+        if(!ctype_alnum($name)) {
+            echo "<div class='container'>
+                    <h3>Invalid name</h3>
+                </div>";
+        $this->listCategories();
+        return;
+        }
+//        $name = test_input($name);
+        if (isset($_POST['selectedCategoryActive'])) {
+            $active = $_POST['selectedCategoryActive'];
+        } else {
+            $active = '';
+        }
+
         $db = Db::getInstance();
         $db->updateCategory($name, $post->id);
         $this->listCategories();
@@ -55,8 +72,6 @@ class PostsController {
             $path = "uploads/";
             $path = $path . basename($_FILES['uploaded_file']['name']);
             if (move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $path)) {
-                echo "The file " . basename($_FILES['uploaded_file']['name']) .
-                " has been uploaded";
             } else {
                 echo "There was an error uploading the file, please try again!";
             }

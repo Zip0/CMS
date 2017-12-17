@@ -1,5 +1,6 @@
 <?php
-
+        set_include_path('../../');
+        require_once ('connection.php');
 class Post {
 
     public $id;
@@ -43,8 +44,6 @@ class Post {
         $db = Db::getInstance();
         $id = intval($id);
         $post = $db->getCategory($id);
-
-//        var_dump($post);
         if ($post != null) {
             if (!isset($post[0]['location'])) {
                 $post[0]['location'] = '';

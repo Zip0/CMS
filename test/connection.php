@@ -7,7 +7,7 @@ class Db {
     private $_host = "localhost";
     private $_username = "root";
     private $_password = "";
-    private $_database = "slide_menu";
+    private $_database = "test";
 
     public static function getInstance() {
         if (!self::$_instance) { // If no instance then make one
@@ -75,11 +75,12 @@ class Db {
                 $path = $id . ',' . $path;
             }
         }
+        $path = str_replace(".","", $path) . '.';
+//        $path .= '.';
         return $path;
     }
 
     public function addCategory() {
-//        var_dump($_POST);
         $name = $_POST['selectedCategoryName'];
         $path = $this->getHierarchy($_POST['selectedCategoryParent']);
         if(isset($_POST['selectedCategoryActive'])) {
@@ -114,6 +115,8 @@ class Db {
 
     public function deleteCategory($id) {
         mysqli_query($this->_connection, "DELETE FROM categories WHERE id_category=" . (int) $id);
+        mysqli_query($this->_connection, "delete from categories where path like '%," . (int) $id . ",%' or path like '%," . (int) $id . ".%'");
+        
     }
 
     public function updateCategory($name, $id) {

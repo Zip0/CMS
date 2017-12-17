@@ -26,11 +26,11 @@
 
 <script src="https://code.jquery.com/jquery.js"></script>
 
-
         </head>
         <body>
             <header>
-                <?php include 'views/header.php'; ?>
+                <?php include 'views/header.php'; 
+                ?>
                 <!--                <a href='?controller=posts&action=listCategories'>Posts</a>-->
             </header>
 
@@ -38,7 +38,7 @@
 
             <footer>
 
-                <?php include 'views/footer.php'; ?>
+                <?php //include 'views/footer.php'; ?>
             </footer>
         <body>
     </html>

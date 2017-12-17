@@ -1,17 +1,15 @@
-<nav class="navbar">
-    <!--<div class="container-fluid">-->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
+      <button type="button" class="navbar-toggle glyphicon glyphicon-th-list" data-toggle="collapse" data-target="#myNavbar">
+               
       </button>
     </div>
 <div class="container" id="header">
     <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
             <?php
-            require_once '/../connection.php';
+//            phpinfo();
+            set_include_path( '..' . DIRECTORY_SEPARATOR);
+            require_once 'connection.php';
             $db = Db::getInstance();
             $categories = $db->getCategories();
 
@@ -53,5 +51,3 @@
         </ul>
     </div>
 </div>
-<!--</div>-->
-</nav>
