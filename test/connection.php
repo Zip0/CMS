@@ -33,6 +33,51 @@ class Db {
         return $this->_connection;
     }
 
+    //Village stuff
+    
+    public function getVillageSummary($id) {
+        $sql = mysqli_query($this->_connection, "SELECT * FROM villages WHERE id_village=" . (int) $id);
+        $villageSummary = $sql->fetch_array(MYSQLI_ASSOC);
+//        var_dump($villageSummary);
+        return $villageSummary;
+    }
+    
+    public function getVillagers($id) {
+//        var_dump($id);exit;
+        $sql = mysqli_query($this->_connection, "SELECT * FROM test.villagers");// WHERE village=" . (int) $id);
+//        $villagers = $sql->fetch_array(MYSQLI_ASSOC);
+//        var_dump($sql);exit;
+//        var_dump($sql->fetch_array(MYSQLI_ASSOC));exit;
+//        var_dump($villagers);
+        $villagers = [];
+        while ($row_villager = mysqli_fetch_assoc($sql)) {
+//            $villager = $this->getImage($row_category['id_category']);
+//            array_push($row_category, $image);
+//            var_dump($row_villager);
+            $villagers[] = $row_villager;
+        }
+//        var_dump($villagers);
+        return $villagers;
+    }
+    
+    public function completeTurn ($id) {
+        echo 'connection';
+        mysqli_query($this->_connection, "UPDATE villages SET turn = turn +1 WHERE id_village=" . (int) $id);
+        var_dump($id);exit;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //End of Village stuff
+    
     public function getCategories() {
         $sql = mysqli_query($this->_connection, "SELECT id_category, name, path, active FROM categories");
         while ($row_category = mysqli_fetch_assoc($sql)) {

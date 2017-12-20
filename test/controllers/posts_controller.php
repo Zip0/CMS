@@ -86,7 +86,15 @@ class PostsController {
             return call('pages', 'error');
         }
     }
-
+    //Village stuff
+    
+    
+    
+    
+    
+    
+    
+    //end of Village stuff
 }
 
 ?>

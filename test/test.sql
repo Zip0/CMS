@@ -1,8 +1,8 @@
--- MySQL dump 10.16  Distrib 10.1.26-MariaDB, for Win32 (AMD64)
+-- MySQL dump 10.16  Distrib 10.1.21-MariaDB, for Win32 (AMD64)
 --
--- Host: localhost    Database: test
+-- Host: localhost    Database: localhost
 -- ------------------------------------------------------
--- Server version	10.1.26-MariaDB
+-- Server version	10.1.21-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -27,7 +27,7 @@ CREATE TABLE `cart` (
   `product_id` int(11) DEFAULT NULL,
   `product_quantity` int(11) DEFAULT NULL,
   PRIMARY KEY (`cart_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-INSERT INTO `cart` VALUES (1,3,12),(2,5,5),(4,7,18),(5,2,10);
+INSERT INTO `cart` VALUES (1,3,10),(33,5,8),(35,1,23);
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -54,7 +54,7 @@ CREATE TABLE `categories` (
   `active` tinyint(1) NOT NULL DEFAULT '1',
   UNIQUE KEY `id_category` (`id_category`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=182 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=257 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,7 +63,7 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES (153,'Kobiety','0',1),(155,'Buty','0,153',1),(156,'Zimowe','0,153,155',1),(157,'Mężczyźni','0',1),(158,'Rękawiczki','0,153',1),(159,'Szale','0,153',0),(160,'Zegarki','0,157',1),(161,'Koty','0',1),(173,'Gosia','0',1),(175,'Ryszard','0,173',1),(180,'asdf','0',0);
+INSERT INTO `categories` VALUES (153,'Kobiety','0',0),(155,'Podkłady','0,153',1),(156,'Jasne','0,153,155',1),(157,'Mężczyźni','0',1),(159,'Pomadki','0,153',1),(160,'Lakiery','0,157',1),(161,'Koty','0',1),(173,'Gosia','0',1),(175,'Ryszard','0,173',1),(256,'arse','0',1);
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,8 +104,8 @@ CREATE TABLE `images` (
   `location` varchar(64) CHARACTER SET utf8 COLLATE utf8_polish_ci NOT NULL,
   UNIQUE KEY `id` (`id`),
   KEY `FK_images_categories` (`id_category`),
-  CONSTRAINT `FK_images_categories` FOREIGN KEY (`id_category`) REFERENCES `categories` (`id_category`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
+  CONSTRAINT `images_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `categories` (`id_category`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -114,7 +114,6 @@ CREATE TABLE `images` (
 
 LOCK TABLES `images` WRITE;
 /*!40000 ALTER TABLE `images` DISABLE KEYS */;
-INSERT INTO `images` VALUES (4,155,'latajacy-kot-mieszne-chmury.jpeg'),(11,156,'175.png'),(12,157,'6246917+_3fb04b0f9d6aa91c9af564988cbb1814.png'),(27,153,'eris_of_the_month-20170519-eris_pepe.jpg'),(32,173,'6151031+_54cd9754c9ff4d2097e3e0754a278534.jpg'),(37,175,'5859b173711f64423aa5e050.png'),(39,180,'Accurate+frame+rate+too+_de1ef6c8a6836324eed6d92174be1b5f.jpg');
 /*!40000 ALTER TABLE `images` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,6 +141,94 @@ LOCK TABLES `products` WRITE;
 INSERT INTO `products` VALUES (1,'Pomadka',24),(2,'Szminka',40),(3,'Kredka do brwi',16),(4,'Pędzel',35),(5,'Maskara',29),(6,'Puder',27),(7,'Podkład',20);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `villager_types`
+--
+
+DROP TABLE IF EXISTS `villager_types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `villager_types` (
+  `id_villager_type` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) COLLATE utf8mb4_polish_ci DEFAULT NULL,
+  PRIMARY KEY (`id_villager_type`),
+  UNIQUE KEY `Index 2` (`title`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `villager_types`
+--
+
+LOCK TABLES `villager_types` WRITE;
+/*!40000 ALTER TABLE `villager_types` DISABLE KEYS */;
+INSERT INTO `villager_types` VALUES (1,'child'),(3,'farmer'),(2,'villager'),(4,'woodcutter');
+/*!40000 ALTER TABLE `villager_types` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `villagers`
+--
+
+DROP TABLE IF EXISTS `villagers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `villagers` (
+  `id_villager` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8mb4_polish_ci DEFAULT NULL,
+  `village` varchar(50) COLLATE utf8mb4_polish_ci DEFAULT NULL,
+  `age` int(10) unsigned NOT NULL DEFAULT '0',
+  `type` varchar(50) COLLATE utf8mb4_polish_ci DEFAULT '0',
+  `sex` int(1) unsigned DEFAULT NULL,
+  `hp_max` int(10) unsigned DEFAULT NULL,
+  `hp` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id_villager`),
+  KEY `Index 2` (`type`),
+  KEY `village` (`village`),
+  CONSTRAINT `FK_villager_village` FOREIGN KEY (`village`) REFERENCES `villages` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_villager_villager_type` FOREIGN KEY (`type`) REFERENCES `villager_types` (`title`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `villagers`
+--
+
+LOCK TABLES `villagers` WRITE;
+/*!40000 ALTER TABLE `villagers` DISABLE KEYS */;
+INSERT INTO `villagers` VALUES (10,'Alvo','Jaslevo',24,'villager',1,65,60),(11,'Marika','Jaslevo',22,'villager',0,55,53);
+/*!40000 ALTER TABLE `villagers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `villages`
+--
+
+DROP TABLE IF EXISTS `villages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `villages` (
+  `id_village` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8mb4_polish_ci DEFAULT NULL,
+  `cottages` int(11) NOT NULL DEFAULT '0',
+  `food` int(11) NOT NULL DEFAULT '0',
+  `wood` int(11) NOT NULL DEFAULT '0',
+  `gold` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_village`),
+  KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `villages`
+--
+
+LOCK TABLES `villages` WRITE;
+/*!40000 ALTER TABLE `villages` DISABLE KEYS */;
+INSERT INTO `villages` VALUES (1,'Jaslevo',0,0,0,0);
+/*!40000 ALTER TABLE `villages` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -152,4 +239,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-01 22:41:18
+-- Dump completed on 2017-12-18 17:11:52

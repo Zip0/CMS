@@ -27,7 +27,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Add category</h4>
                 </div>
-                <form method="POST" name="addCategory" action="?controller=posts&action=addCategory" onsubmit="return validateForm()">
+                <form method="POST" name="addCategory" action="?controller=posts&action=addCategory">
                     <label for="categoryInputParent">Parent Category:</label>
                     <select class="form-control" id="categoryInputParent" name="selectedCategoryParent">                
                     <option value="0">Primary Category</option>'

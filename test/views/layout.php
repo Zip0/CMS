@@ -29,12 +29,15 @@
         </head>
         <body>
             <header>
-                <?php include 'views/header.php'; 
+                <?php //include 'views/header.php'; 
                 ?>
                 <!--                <a href='?controller=posts&action=listCategories'>Posts</a>-->
             </header>
 
-            <?php require_once('routes.php'); ?>
+            <?php 
+//            echo 'layout';exit;
+            require_once('routes.php'); 
+            ?>
 
             <footer>
 
