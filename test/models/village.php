@@ -7,15 +7,17 @@ class Village {
 
     public $id;
     public $name;
+    public $turn;
     public $villagers;
     public $cottages;
     public $food;
     public $wood;
     public $gold;
 
-    public function __construct($id, $name, $villagers, $cottages, $food, $wood, $gold) {
+    public function __construct($id, $name, $turn, $villagers, $cottages, $food, $wood, $gold) {
         $this->id = $id;
         $this->name = $name;
+        $this->turn = $turn;
         $this->villagers = $villagers;
         $this->cottages = $cottages;
         $this->food = $food;
@@ -45,7 +47,7 @@ class Village {
         
         
 //        var_dump($village);
-        return new Village($id, $village['name'], $villagers, $village['cottages'], $village['food'], $village['wood'], $village['gold']);
+        return new Village($id, $village['name'], $village['turn'], $villagers, $village['cottages'], $village['food'], $village['wood'], $village['gold']);
     }
 
 

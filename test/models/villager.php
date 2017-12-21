@@ -3,7 +3,7 @@
 //set_include_path('../../');
 require_once ('connection.php');
 
-class Village {
+class Villager {
 
     public $id;
     public $name;

@@ -60,7 +60,12 @@ class Db {
         return $villagers;
     }
     
-    
+    public function addTurn ($id) {
+        echo 'connection';
+        mysqli_query($this->_connection, "UPDATE villages SET turn = turn +1 WHERE id_village=" . (int) $id);
+//        return;
+//        var_dump($id);exit;
+    }
     
     
     
