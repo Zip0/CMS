@@ -3,11 +3,11 @@
 //phpinfo();
 //require_once 'connection.php';
 //set_include_path('..' . DIRECTORY_SEPARATOR);
-//require_once 'connection.php';
+include_once 'connection.php';
 
 //set_include_path('..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR);
 //set_include_path(null);
-//require_once 'models/village.php';
+include_once 'models/village.php';
 
 if (isset($_GET['controller']) && isset($_GET['action'])) {
     $controller = $_GET['controller'];

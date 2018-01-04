@@ -10,8 +10,8 @@
 //Villages
 //echo 'home';//exit;
 //require_once 'models/villager.php';
-require_once 'models/village.php';
-$village = Village::find(1);//1 is hardcoded
+//require_once 'models/village.php';
+$village = Village::find(1);
 
 require_once('views/village/villagesimulator.php');
 ?>

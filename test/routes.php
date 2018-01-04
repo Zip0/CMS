@@ -2,7 +2,7 @@
 
 function call($controller, $action) {
     require_once('controllers/' . $controller . '_controller.php');
-    var_dump($controller);//exit;
+//    var_dump($controller);exit;
     switch ($controller) {
         case 'pages':
 //            echo '***routes pages***'; //exit;
@@ -16,9 +16,8 @@ function call($controller, $action) {
         case 'village':
 //            echo '***routes village***';// exit;
 //            set_include_path(DIRECTORY_SEPARATOR);
-            require_once('connection.php');//may be needed
-            require_once('models/village.php');//may be needed
-            require_once('models/villager.php');//may be needed
+            require_once('models/village.php');
+            require_once('models/villager.php');
             $controller = new VillageController();
             break;
     }

@@ -1,6 +1,6 @@
 <?php
 
-//set_include_path('../../');
+set_include_path('../../');
 require_once ('connection.php');
 
 class Village {

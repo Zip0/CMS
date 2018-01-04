@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+//    alert('js ready');
     $(document).on('click', '.delete', function (event) {
         var result = confirm("Are you sure you want to delete?");
         if (!result) {
@@ -83,6 +83,24 @@ $(document).ready(function () {
             },
             error: function (result) {
                 console.log(JSON.stringify(result));
+            }
+        });
+    });
+
+    $(document).on('click', ('#end-turn'), function () {
+//        alert('clicc');
+        var id = (event.target.value);
+//        alert(id);
+        $.ajax({
+            type: 'get',
+            url: '?controller=village&action=completeTurn&id=' + id,
+            success: function () {
+                
+//                alert('succeeded');
+                $("#villageSummary").load("views/village/villagesimulator.php");
+            },
+            error: function () {
+                alert('failed');
             }
         });
     });

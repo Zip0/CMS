@@ -37,6 +37,7 @@ class Db {
     
     public function getVillageSummary($id) {
         $sql = mysqli_query($this->_connection, "SELECT * FROM villages WHERE id_village=" . (int) $id);
+//        var_dump($sql);
         $villageSummary = $sql->fetch_array(MYSQLI_ASSOC);
 //        var_dump($villageSummary);
         return $villageSummary;
@@ -60,10 +61,9 @@ class Db {
         return $villagers;
     }
     
-    public function addTurn ($id) {
-        echo 'connection';
+    public function completeTurn ($id) {
+//        echo 'connection';
         mysqli_query($this->_connection, "UPDATE villages SET turn = turn +1 WHERE id_village=" . (int) $id);
-//        return;
 //        var_dump($id);exit;
     }
     
