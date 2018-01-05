@@ -13,7 +13,7 @@ class VillageController {
     }
     
     private function getProfessions($village) {
-        $professions = array();
+        $professions = array('farmers' => 0, 'woodcutters' => 0, 'commoners' => 0, 'workExempt' => 0);
         foreach($village->villagers as $villager) {
             switch ($villager['type']) {
                 case "farmer":

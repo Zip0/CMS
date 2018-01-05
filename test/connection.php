@@ -34,7 +34,7 @@ class Db {
     }
 
     //Village stuff
-    
+
     public function getVillageSummary($id) {
         $sql = mysqli_query($this->_connection, "SELECT * FROM villages WHERE id_village=" . (int) $id);
 //        var_dump($sql);
@@ -42,7 +42,7 @@ class Db {
 //        var_dump($villageSummary);
         return $villageSummary;
     }
-    
+
     public function getVillagers($id) {
         $sql = mysqli_query($this->_connection, "SELECT * FROM test.villagers");
         $villagers = [];
@@ -52,30 +52,18 @@ class Db {
 //        var_dump($villagers);
         return $villagers;
     }
-    
-    public function completeTurn ($id, $deltaFood, $deltaWood, $deltaGold) {
-        mysqli_query($this->_connection, 
-                "UPDATE villages "
+
+    public function completeTurn($id, $deltaFood, $deltaWood, $deltaGold) {
+        mysqli_query($this->_connection, "UPDATE villages "
                 . "SET turn = turn +1, "
-                . "food = food +" . $deltaFood . ","
-                . "wood = wood +" . $deltaWood . ","
-                . "wood = gold +" . $deltaGold . ","
+                . "food = food +" . $deltaFood . ", "
+                . "wood = wood +" . $deltaWood . ", "
+                . "gold = gold +" . $deltaGold . " "
                 . "WHERE id_village=" . (int) $id);
-        
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     //End of Village stuff
-    
+
     public function getCategories() {
         $sql = mysqli_query($this->_connection, "SELECT id_category, name, path, active FROM categories");
         while ($row_category = mysqli_fetch_assoc($sql)) {
@@ -118,7 +106,7 @@ class Db {
                 $path = $id . ',' . $path;
             }
         }
-        $path = str_replace(".","", $path) . '.';
+        $path = str_replace(".", "", $path) . '.';
 //        $path .= '.';
         return $path;
     }
@@ -126,9 +114,9 @@ class Db {
     public function addCategory() {
         $name = $_POST['selectedCategoryName'];
         $path = $this->getHierarchy($_POST['selectedCategoryParent']);
-        if(isset($_POST['selectedCategoryActive'])) {
+        if (isset($_POST['selectedCategoryActive'])) {
             $active = $_POST['selectedCategoryActive'];
-        }else{
+        } else {
             $active = 0;
         }
         mysqli_query($this->_connection, "INSERT INTO categories (name, path, active) VALUES('" . $name . "', '" . $path . "', '" . $active . "')");
@@ -159,7 +147,6 @@ class Db {
     public function deleteCategory($id) {
         mysqli_query($this->_connection, "DELETE FROM categories WHERE id_category=" . (int) $id);
         mysqli_query($this->_connection, "delete from categories where path like '%," . (int) $id . ",%' or path like '%," . (int) $id . ".%'");
-        
     }
 
     public function updateCategory($name, $id) {
