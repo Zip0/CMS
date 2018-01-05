@@ -11,7 +11,7 @@
 //echo 'home';//exit;
 //require_once 'models/villager.php';
 //require_once 'models/village.php';
-$village = Village::find(1);
+//$village = Village::find(1);
 
 require_once('views/village/villagesimulator.php');
 ?>

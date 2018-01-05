@@ -24,7 +24,7 @@ $village = Village::find(1);
 <div id="villageSummary">
 <table>
     <tr>
-        <td>Customer</td>        <td>Product</td>        <td>Accessory</td>        <td>Value</td>        <td>Hierarchy</td>        <td></td>
+        <td>Villagers</td>        <td>Food</td>        <td>Wood</td>        <td>Gold</td>        <td>Turn</td>        <td></td>
     </tr>
     <tr>
         <td><?php echo count($village->villagers) ?></td>        

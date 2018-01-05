@@ -1,7 +1,7 @@
 <?php
 
 set_include_path('../../');
-require_once ('connection.php');
+//require_once ('connection.php');
 
 class Village {
 
@@ -38,6 +38,7 @@ class Village {
 //    }
 
     public static function find($id) {
+        require_once ('connection.php');
         $db = Db::getInstance();
         $id = intval($id);
         $village = $db->getVillageSummary($id);
@@ -45,8 +46,8 @@ class Village {
         
 //        $village = new Village($id, $village['name'], $village['villagers'], $village['cottages'], $village['food'], $village['wood'], $village['gold']);
         
-        
-//        var_dump($village);
+//        $villageDump = new Village($id, $village['name'], $village['turn'], $villagers, $village['cottages'], $village['food'], $village['wood'], $village['gold']);
+//        var_dump($villageDump);
         return new Village($id, $village['name'], $village['turn'], $villagers, $village['cottages'], $village['food'], $village['wood'], $village['gold']);
     }
 
