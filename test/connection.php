@@ -38,19 +38,45 @@ class Db {
     public function getVillageSummary($id) {
         $sql = mysqli_query($this->_connection, "SELECT * FROM villages WHERE id_village=" . (int) $id);
 //        var_dump($sql);
-        $villageSummary = $sql->fetch_array(MYSQLI_ASSOC);
+        if (!empty($sql)) {
+            $villageSummary = $sql->fetch_array(MYSQLI_ASSOC);
 //        var_dump($villageSummary);
-        return $villageSummary;
+            return $villageSummary;
+        } else {
+            return false;
+        }
     }
 
     public function getVillagers($id) {
-        $sql = mysqli_query($this->_connection, "SELECT * FROM test.villagers");
+
         $villagers = [];
-        while ($row_villager = mysqli_fetch_assoc($sql)) {
-            $villagers[] = $row_villager;
+        $sql = mysqli_query($this->_connection, "SELECT * FROM test.villagers");
+        if (!empty($sql)) {
+            while ($row_villager = mysqli_fetch_assoc($sql)) {
+                $villagers[] = $row_villager;
+            }
+//        var_dump($villagers);
+            return $villagers;
+        } else {
+            return $villagers;
+        }
+    }
+
+    public function getVillager($id) {
+
+//        $villagers = [];
+        $sql = mysqli_query($this->_connection, "SELECT * FROM test.villagers WHERE id_villager = " . $id);
+        if (!empty($sql)) {
+            while ($row_villager = mysqli_fetch_assoc($sql)) {
+                $villager[] = $row_villager;
+            }
         }
 //        var_dump($villagers);
-        return $villagers;
+//        $villager = $sql;
+            return $villager;
+//        } else {
+//            return $villager;
+//        }
     }
 
     public function completeTurn($id, $deltaFood, $deltaWood, $deltaGold) {

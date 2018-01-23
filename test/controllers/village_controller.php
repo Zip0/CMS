@@ -11,10 +11,23 @@ class VillageController {
         $deltaGold = $this->getDeltaGold(count($village->villagers));
         $db->completeTurn($village->id, $deltaFood, $deltaWood, $deltaGold);
     }
-    
+
+    public function edit() {
+//        echo 'edit';exit;
+        $this->checkId();
+        $villager = Villager::find($_GET['id']);
+        require_once('views/village/edit.php');
+    }
+
+    private function checkId() {
+        if (!isset($_GET['id'])) {
+            return call('pages', 'error');
+        }
+    }
+
     private function getProfessions($village) {
         $professions = array('farmers' => 0, 'woodcutters' => 0, 'commoners' => 0, 'workExempt' => 0);
-        foreach($village->villagers as $villager) {
+        foreach ($village->villagers as $villager) {
             switch ($villager['type']) {
                 case "farmer":
                     $professions['farmers'] += 1;
@@ -43,6 +56,5 @@ class VillageController {
     private function getDeltaGold($villagers) {
         return ($villagers);
     }
-    
 
 }

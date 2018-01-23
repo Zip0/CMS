@@ -28,7 +28,7 @@ function call($controller, $action) {
 $controllers = array(
     'pages' => ['home', 'error'],
     'posts' => ['listCategories', 'edit', 'delete', 'addCategory', 'addImage', 'toggleActive', 'updateCategory'],
-    'village' => ['completeTurn']
+    'village' => ['completeTurn', 'edit']
 );
 
 if (array_key_exists($controller, $controllers)) {
@@ -41,6 +41,8 @@ if (array_key_exists($controller, $controllers)) {
     if (in_array($action/*[0]*/, $controllers[$controller])) {
         call($controller, $action/*[0]*/);
     } else {
+        var_dump($controller);
+        var_dump($action);
         echo 'PING';
 //        exit;
         call('pages', 'error');

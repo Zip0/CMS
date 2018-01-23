@@ -7,20 +7,22 @@ class Villager {
 
     public $id;
     public $name;
-    public $villagers;
-    public $cottages;
-    public $food;
-    public $wood;
-    public $gold;
+    public $village;
+    public $age;
+    public $type;
+    public $sex;
+    public $hp_max;
+    public $hp;
 
-    public function __construct($id, $name, $villagers, $cottages, $food, $wood, $gold) {
+    public function __construct($id, $name, $village, $age, $type, $sex, $hp_max, $hp) {
         $this->id = $id;
         $this->name = $name;
-        $this->villagers = $villagers;
-        $this->cottages = $cottages;
-        $this->food = $food;
-        $this->wood = $wood;
-        $this->gold = $gold;
+        $this->village = $village;
+        $this->age = $age;
+        $this->type = $type;
+        $this->sex = $sex;
+        $this->hp_max = $hp_max;
+        $this->hp = $hp;
     }
 //    
 //    public static function all() {
@@ -38,14 +40,19 @@ class Villager {
     public static function find($id) {
         $db = Db::getInstance();
         $id = intval($id);
-        $village = $db->getVillageSummary($id);
-        $villagers = $db->getVillagersSummary($id);
+//        $village = $db->getVillageSummary($id);
+//        $villagers = $db->getVillagersSummary($id);
         
+        $villager[] = $db->getVillager($id);
 //        $village = new Village($id, $village['name'], $village['villagers'], $village['cottages'], $village['food'], $village['wood'], $village['gold']);
         
+        $villager = $villager[0][0];
         
-//        var_dump($village);
-        return new Village($id, $village['name'], $village['villagers'], $village['cottages'], $village['food'], $village['wood'], $village['gold']);
+//        var_dump($villager[0]);
+//        print_r($villager[0][0]);
+        
+//        var_dump($villager);
+        return new Villager($id, $villager['name'], $villager['village'], $villager['age'], $villager['type'], $villager['sex'], $villager['hp_max'], $villager['hp']);
     }
 
 
