@@ -1,5 +1,5 @@
 # CMS
-A small showcase of my web development skills.
+A small (and outdated) showcase of my web development skills.
 
 Database details:
 database name: test
