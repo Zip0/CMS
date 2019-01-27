@@ -1,5 +1,5 @@
 {
-  "name": "CMS/CMS",
+  "name": "CMS",
   "description": "PHP MVC framework",
   "autoload": {
     "psr-4": {
