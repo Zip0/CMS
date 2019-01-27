@@ -1,9 +1,3 @@
 {
-  "name": "CMS/CMS",
-  "version": "1",
-  "autoload": {
-    "psr-0": {
-      "NS_": "src"
-    }
-  }
+  "name": "Zip0/CMS"
 }
