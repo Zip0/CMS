@@ -1,3 +1,12 @@
 {
-  "name": "Zip0/CMS"
+  "name": "CMS/CMS",
+  "description": "PHP MVC framework",
+  "autoload": {
+    "psr-4": {
+      "CMS\\" : "src/"
+    }
+  },
+  "require": {
+    "php": ">=7.0"
+  }
 }
